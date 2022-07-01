@@ -12,7 +12,7 @@ To install App Commands, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install app_commands
+    $ pip install app-commands
 
 This is the preferred method to install App Commands, as it will always install the most recent stable release.
 

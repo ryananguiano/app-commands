@@ -1,5 +1,6 @@
 aio-tiny-healthcheck
 Click
+starlette
 bump2version
 watchdog
 flake8

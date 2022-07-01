@@ -3,8 +3,8 @@ App Commands
 ============
 
 
-.. image:: https://img.shields.io/pypi/v/app_commands.svg
-        :target: https://pypi.python.org/pypi/app_commands
+.. image:: https://img.shields.io/pypi/v/app-commands.svg
+        :target: https://pypi.python.org/pypi/app-commands
 
 .. image:: https://img.shields.io/travis/ryananguiano/app-commands.svg
         :target: https://travis-ci.com/ryananguiano/app-commands

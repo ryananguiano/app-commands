@@ -97,13 +97,13 @@ class AppCommands:
         if context.parent:
             options.update(context.parent.params)
 
-        async def _run_command():
+        async def run_command_instance():
             instance = command(**options)
             with self.exception_handler(instance):
                 await instance.run(*args, **kwargs)
 
         try:
-            asyncio.run(_run_command())
+            asyncio.run(run_command_instance())
         except (KeyboardInterrupt, SystemExit):
             pass
 

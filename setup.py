@@ -10,9 +10,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['aio-tiny-healthcheck', 'Click>=7.0', ]
+requirements = ['Click>=7.0']
 
-test_requirements = ['pytest>=3', ]
+extra_requirements = {
+    'healthcheck': ['aiohttp', 'aio-tiny-healthcheck'],
+}
+test_requirements = ['pytest>=3']
 
 setup(
     author='Ryan Anguiano',
@@ -30,6 +33,7 @@ setup(
         'Programming Language :: Python :: 3.10',
     ],
     description='CLI commands utility with ASGI lifespan and healthcheck support.',
+    extras_require=extra_requirements,
     install_requires=requirements,
     license='MIT license',
     long_description=readme + '\n\n' + history,

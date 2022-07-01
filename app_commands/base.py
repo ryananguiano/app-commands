@@ -2,12 +2,15 @@ import asyncio
 import sys
 import typing
 
-from aio_tiny_healthcheck.checker import Checker
-from aio_tiny_healthcheck.http_server import HttpServer
 import click
 
 from app_commands.lifespan import AppLifespan, mock_lifespan
 from app_commands.termcolors import OutputWrapper
+
+try:
+    import aio_tiny_healthcheck
+except ImportError:
+    aio_tiny_healthcheck = None
 
 
 MethodReturnsBool = typing.Union[
@@ -54,11 +57,14 @@ class BaseCommand:
     async def _start_healthcheck_server(self):
         if self.healthcheck_port is None:
             return
-        checker = Checker()
+        assert (
+            aio_tiny_healthcheck is not None
+        ), 'Requires aio_tiny_healthcheck to be installed'
+        checker = aio_tiny_healthcheck.Checker()
         healthchecks = await self.get_healthchecks()
         for name, func in healthchecks.items():
             checker.add_check(name, func)
-        hc_server = HttpServer(
+        hc_server = aio_tiny_healthcheck.HttpServer(
             healthcheck_provider=checker,
             path=self.healthcheck_path,
             port=self.healthcheck_port,
